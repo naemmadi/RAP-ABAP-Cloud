@@ -1,0 +1,11 @@
+@EndUserText.label: 'Travel App for V2 Processor'
+define service Ztravel_sri_SD_v2_Processor {
+  expose ztravel_sri_c_processor   as Travel;
+  expose Zbooksupp_SRI_C_PROCESSOR as BookSupp;
+  expose Zbooking_SRI_C_PROCESSOR  as Booking;
+  expose /DMO/I_Agency             as Agency;
+  expose /DMO/I_Customer           as Customer;
+  expose /DMO/I_Carrier            as Carrier;
+  expose /DMO/I_Connection         as Connection;
+  expose /DMO/I_Booking_Status_VH  as Bookingstatus;
+}

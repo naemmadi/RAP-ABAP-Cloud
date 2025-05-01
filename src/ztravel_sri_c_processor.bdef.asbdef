@@ -1,0 +1,29 @@
+projection;
+strict ( 2 );
+
+define behavior for ztravel_sri_c_processor alias Travel
+{
+  use create;
+  use update;
+  use delete;
+
+  use association _Booking { create; }
+}
+
+define behavior for Zbooking_SRI_C_PROCESSOR alias Booking
+{
+  use update;
+  use delete;
+
+  use association _Travel;
+  use association _Booksupp { create; }
+}
+
+define behavior for Zbooksupp_SRI_C_PROCESSOR alias Booksuppl
+{
+  use update;
+  use delete;
+
+  use association _Travel;
+  use association _Booking;
+}

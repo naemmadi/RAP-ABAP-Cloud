@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Def to material master'
+define service Zsd_ssot_mat {
+  expose zc_ssot_mat_cube;
+}

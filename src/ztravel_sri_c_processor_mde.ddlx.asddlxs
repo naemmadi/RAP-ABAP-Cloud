@@ -1,0 +1,106 @@
+@Metadata.layer: #CUSTOMER
+@UI.headerInfo:{ 
+        typeName: 'Travel',
+        typeNamePlural: 'Travels',
+        title:{ value: 'TravelId' },
+        description:{ value: '_Customer.FirstName'}
+         }
+annotate entity ztravel_sri_c_processor
+    with 
+{
+@UI.facet: [{ purpose: #HEADER,
+             type: #DATAPOINT_REFERENCE,
+               label: 'Flight Ticket Price' ,
+                position: 10, 
+                targetQualifier: 'price_data' },
+                { 
+                purpose: #HEADER,       // This will display on header
+                type: #DATAPOINT_REFERENCE,
+               label: 'STATUS' ,
+                position: 20, 
+                targetQualifier: 'status' },
+                { purpose:#STANDARD,
+                  type: #COLLECTION,
+                  label: 'Additional Details',
+                  position: 10,
+                  id: 'Add1'
+                  },
+                  { purpose: #STANDARD, 
+                  type: #IDENTIFICATION_REFERENCE,
+                   position: 10,
+                   label: 'More Info',
+                   parentId: 'Add1' 
+                   },
+                   { 
+                    purpose: #STANDARD,
+                    type: #FIELDGROUP_REFERENCE,
+                    position: 20,
+                    label: 'Price Data',
+                    parentId: 'Add1',
+                    targetQualifier: 'GRP1'
+                   },
+                   { purpose: #STANDARD,
+                    type: #FIELDGROUP_REFERENCE,
+                    position: 30,
+                    label: 'Dates',
+                    parentId: 'Add1',
+                    targetQualifier: 'GRP2'
+                   },
+                    { purpose: #STANDARD,
+                    type: #FIELDGROUP_REFERENCE,
+                    position: 40,
+                    label: 'Admin Data',
+                    parentId: 'Add1',
+                    targetQualifier: 'GRP3'
+                   },
+                   { 
+                   purpose: #STANDARD,
+                   type: #LINEITEM_REFERENCE,
+                   label: 'Booking',
+                   position: 20,
+                   targetElement: '_Booking'
+                   }
+                 ]
+
+@UI.selectionField: [{ position: 10 }]
+@UI.lineItem: [{ position: 10 }]
+@UI.identification: [{ position: 10 }]
+  TravelId;
+
+@UI.selectionField: [{ position: 20 }]
+@UI.lineItem: [{ position: 20 }]
+@UI.identification: [{ position: 20 }]
+  AgencyId;
+  @UI.lineItem: [{ position: 30 }]
+  @UI.selectionField: [{ position: 30 }]
+  @UI.identification: [{ position: 30 }]
+  CustomerId;
+  @UI.fieldGroup: [{ position: 10, qualifier: 'GRP2', label: 'Start Date' }]
+  @UI.lineItem: [{ position: 40 }]
+  BeginDate;
+   @UI.fieldGroup: [{ position: 20, qualifier: 'GRP2', label: 'End Date' }]
+EndDate;
+@UI.lineItem: [{ position: 50 }]
+@UI.fieldGroup: [{ position: 10, qualifier: 'GRP1' }]
+  BookingFee;
+  @UI.lineItem: [{ position: 60 }]
+  @UI.selectionField: [{ position: 40 }]
+  @UI.dataPoint:{ qualifier: 'price_data', title: 'Flight Price' }
+  @UI.fieldGroup: [{ position: 20, qualifier: 'GRP1' }]
+  TotalPrice;
+  @UI.fieldGroup: [{ position: 30, qualifier: 'GRP1' }]
+CurrencyCode;
+@UI.selectionField: [{ position: 50 }]
+@UI.lineItem: [{ position: 70, criticality: 'Criticality', importance: #HIGH }]
+@UI.dataPoint:{ qualifier: 'status', title:'Status', criticality: 'Criticality' }
+ @UI.fieldGroup: [{ position: 30, qualifier: 'GRP2' }]
+  OverallStatus;
+  @UI.fieldGroup: [{ position: 10, qualifier: 'GRP3' }]
+      CreatedBy;
+      @UI.fieldGroup: [{ position: 20, qualifier: 'GRP3' }]
+      CreatedAt;
+      @UI.fieldGroup: [{ position: 30, qualifier: 'GRP3' }]
+      LastChangedBy;
+      @UI.fieldGroup: [{ position: 40, qualifier: 'GRP3' }]
+      LastChangedAt;  
+}
